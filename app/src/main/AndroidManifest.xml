@@ -9,13 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity android:name=".Earphone.EarphoneActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".Earphone.PopupActivity"
+            android:theme="@android:style/Theme.Translucent"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".popup">
+        </activity>
+
+        <activity android:name=".Earphone.PopupOnActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent">
+        </activity>
+
+        <activity android:name=".Earphone.PopupPlugOnActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent">
+        </activity>
+
     </application>
 
 </manifest>
