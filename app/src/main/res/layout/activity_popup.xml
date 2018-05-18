@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Earphone is unplugged"
+            android:text="이어폰이 해제되었습니다. 취소를 누르지 않을 경우, 5초 후 긴급문자가 전송됩니다"
             android:id="@+id/txtText"
             android:textSize="15sp"
             android:textColor="#000"
@@ -46,22 +46,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="53dp"
             android:background="#00000000"
-            android:gravity="left"
+            android:gravity="center"
             android:onClick="mOnClose"
-            android:padding="16dp"
-            android:layout_marginRight="50dp"
-            android:text="확인"
-            android:textColor="#ff7a00"
-            android:textSize="15sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:background="#00000000"
-            android:gravity="right"
             android:padding="16dp"
             android:text="취소"
             android:textColor="#ff7a00"

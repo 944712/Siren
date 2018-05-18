@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Earphone is plugged"
+            android:text="이어폰이 연결되었습니다. 해제시 SOS 서비스가 실행됩니다"
             android:id="@+id/txtText"
             android:textSize="15sp"
             android:textColor="#000"

@@ -15,6 +15,9 @@ import android.view.WindowManager;
 import com.example.user.siren.MainActivity;
 import com.example.user.siren.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class EarphoneActivity extends Activity {
     private static IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
     private static BroadcastReceiver mBroadcastReceiver= null;
@@ -51,6 +54,7 @@ public class EarphoneActivity extends Activity {
                         boolean bScreenOn = manager.isInteractive();
 
                         if (bScreenOn) {
+
                             Intent popon = new Intent(context, PopupOnActivity.class);
                             popon.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             context.startActivity(popon);
@@ -58,13 +62,12 @@ public class EarphoneActivity extends Activity {
                         }
                         //스크린이 꺼져있을때
                         else {
-                            Intent popup = new Intent(getApplicationContext(), PopupActivity.class);
-                            popup.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(popup);
+                                Intent popup = new Intent(getApplicationContext(), PopupActivity.class);
+                                popup.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(popup);
                         }
 
                     }
-
 
 
                 }
@@ -72,6 +75,5 @@ public class EarphoneActivity extends Activity {
             registerReceiver(mBroadcastReceiver, mIntentFilter);
 
         }
-
 
 }
