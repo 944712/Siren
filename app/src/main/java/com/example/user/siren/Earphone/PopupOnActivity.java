@@ -1,7 +1,10 @@
 package com.example.user.siren.Earphone;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -29,8 +32,16 @@ public class PopupOnActivity extends Activity{
             @Override
             public void run() {
                 finish();
-                //이후 sms기능과 사이렌 기능 삽입
+                //이후 sms기능
+                //
+                //
+                // 사이렌 기능
+                MediaPlayer mediaPlayer = MediaPlayer.create(PopupOnActivity.this, R.raw.siren);
+                mediaPlayer.start();
 
+                //volume maximum
+                AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 1);
             }
         }, 5000);
 
