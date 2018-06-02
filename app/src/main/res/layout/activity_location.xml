@@ -58,19 +58,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="start"
-            tools:ignore="MissingConstraints" />
-
-        <Button
-            android:id="@+id/btn_change"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="change"
-            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_address"

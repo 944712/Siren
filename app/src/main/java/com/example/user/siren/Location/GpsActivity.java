@@ -32,7 +32,6 @@ import java.util.List;
 
 public class GpsActivity extends Activity {
 
-    private Button btnShowLocation;
     private Button btnShowAddress;
     private TextView txtLat;
     private TextView txtLon;
@@ -51,8 +50,6 @@ public class GpsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        btnShowLocation = (Button) findViewById(R.id.btn_start);
-        btnShowAddress = (Button) findViewById(R.id.btn_change);
 
         txtLat = (TextView) findViewById(R.id.tv_lat);
         txtLon = (TextView) findViewById(R.id.tv_lon);
@@ -62,60 +59,51 @@ public class GpsActivity extends Activity {
 
 
         // GPS 정보를 보여주기 위한 이벤트 클래스 등록
-        btnShowLocation.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                // 권한 요청을 해야 함
-                if (!isPermission) {
-                    callPermission();
-                    return;
-                }
+        gps = new Gpsinfo(GpsActivity.this);
 
-                gps = new Gpsinfo(GpsActivity.this);
-                // GPS 사용유무 가져오기
-                if (gps.isGetLocation()) {
 
-                    double latitude = gps.getLatitude();
-                    double longitude = gps.getLongitude();
+        // 위도, 경도값 변환
+        if (gps.isGetLocation()) {
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
 
-                    txtLat.setText(String.valueOf(latitude));
-                    txtLon.setText(String.valueOf(longitude));
+            txtLat.setText(String.valueOf(latitude));
+            txtLon.setText(String.valueOf(longitude));
 
-                } else {
+        }
+        else {
                     // GPS 를 사용할수 없으므로
                     gps.showSettingsAlert();
-                }
+        }
+
+        callPermission();
+
+
+
+
+        //위도, 경도 변환 후 주소값 보여주기
+        List<Address> list = null;
+        try {
+            double d1 = Double.parseDouble(txtLat.getText().toString());
+            double d2 = Double.parseDouble(txtLon.getText().toString());
+
+            list = geocoder.getFromLocation(
+                    d1, // 위도
+                    d2, // 경도
+                    10); // 얻어올 값의 개수
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
+        }
+        if (list != null) {
+            if (list.size()==0) {
+                txtAddress.setText("해당되는 주소 정보는 없습니다");
+            } else {
+                txtAddress.setText(list.get(0).toString());
             }
-        });
-
-        callPermission();  // 권한 요청을 해야 함
+        }
 
 
-        btnShowAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 위도,경도 입력 후 변환 버튼 클릭
-                List<Address> list = null;
-                try {
-                    double d1 = Double.parseDouble(txtLat.getText().toString());
-                    double d2 = Double.parseDouble(txtLon.getText().toString());
-
-                    list = geocoder.getFromLocation(
-                            d1, // 위도
-                            d2, // 경도
-                            10); // 얻어올 값의 개수
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
-                }
-                if (list != null) {
-                    if (list.size()==0) {
-                        txtAddress.setText("해당되는 주소 정보는 없습니다");
-                    } else {
-                        txtAddress.setText(list.get(0).toString());
-                    }
-                }
-            }
-        });
 
     }
 
@@ -138,7 +126,7 @@ public class GpsActivity extends Activity {
         }
     }
 
-    // 전화번호 권한 요청
+
     private void callPermission() {
         // Check the SDK version and whether the permission is already granted or not.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M

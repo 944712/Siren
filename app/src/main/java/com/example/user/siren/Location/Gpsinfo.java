@@ -146,9 +146,6 @@ public class Gpsinfo extends Service implements LocationListener {
         return lon;
     }
 
-    /**
-     * GPS 나 wife 정보가 켜져있는지 확인합니다.
-     */
     public boolean isGetLocation() {
         return this.isGetLocation;
     }
