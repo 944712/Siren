@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.user.siren.AutoSMS;
 import com.example.user.siren.R;
 
 
@@ -42,15 +43,18 @@ public class PopupOnActivity extends Activity{
                     if (state == false) {
                         //이후 sms기능 삽입
                         //
-                        //
-                        //
+
                         // 사이렌 기능 삽입
                         MediaPlayer mediaPlayer = MediaPlayer.create(PopupOnActivity.this, R.raw.siren);
                         mediaPlayer.start();
 
                         //volume maximum
                         AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                        am.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 1);
+                        am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, 1);
+
+
+                        Intent msg = new Intent(getApplicationContext(), AutoSMS.class);
+                        startActivity(msg);
                     }
                 }
             }, 5000);
