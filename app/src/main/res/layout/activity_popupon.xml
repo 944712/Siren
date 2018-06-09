@@ -46,11 +46,12 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/button2"
+            android:onClick="mOnClose"
             android:layout_width="match_parent"
             android:layout_height="53dp"
             android:background="#00000000"
             android:gravity="center"
-            android:onClick="mOnClose"
             android:padding="16dp"
             android:text="취소"
             android:textColor="#ff7a00"

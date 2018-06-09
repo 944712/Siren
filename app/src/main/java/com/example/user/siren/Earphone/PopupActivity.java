@@ -11,29 +11,37 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.example.user.siren.R;
 
 
 //이어폰이 연결되지 않았을때 & 화면이 꺼져있을때
 public class PopupActivity extends Activity {
+
     private Handler mHandler;
+    private boolean state2;
 
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_popup);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_popup);
 
-            int flags = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON;
-            getWindow().addFlags(flags);
+        int flags = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON;
+        getWindow().addFlags(flags);
 
-            //5초후 창 닫기
-            mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
+        state2 = findViewById(R.id.button).isSelected();
+
+        mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+
+
+
+                if (state2 == false) {
                     //이후 sms기능 삽입
                     //
                     //
@@ -46,32 +54,34 @@ public class PopupActivity extends Activity {
                     AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
                     am.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 1);
                 }
-            }, 5000);
+            }
+        }, 5000);
 
 
+
+
+    }
+
+        @Override
+        public boolean onTouchEvent (MotionEvent event){
+            //바깥레이어 클릭시 안닫히게
+            if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                return false;
+            }
+            return true;
         }
 
-        //취소버튼을 눌렀을때
-    public void mOnClose(View v){
-
-            finish();
-
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        //바깥레이어 클릭시 안닫히게
-        if(event.getAction()==MotionEvent.ACTION_OUTSIDE){
-            return false;
+        @Override
+        public void onBackPressed () {
+            //안드로이드 백버튼 막기
+            return;
         }
-        return true;
+
+
+    public void mOnClose(View v) {
+        state2 = true;
+        finish();
     }
 
-    @Override
-    public void onBackPressed() {
-        //안드로이드 백버튼 막기
-        return;
-    }
 
-    }
-
+}
