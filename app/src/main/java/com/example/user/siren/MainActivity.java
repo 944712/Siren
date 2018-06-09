@@ -46,7 +46,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class MainActivity extends AppCompatActivity {
+public class
+MainActivity extends AppCompatActivity {
 
     private static IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
     private static BroadcastReceiver mBroadcastReceiver= null;
@@ -202,6 +203,10 @@ public class MainActivity extends AppCompatActivity {
             fos2 = openFileOutput("number.txt", Context.MODE_PRIVATE);
             fos2.write(inputNum.getBytes());
             fos2.close();
+            Intent intent = new Intent(this, AutoSMS.class);
+            intent.putExtra("number",inputNum);
+            startActivity(intent);
+            finish();
             ;
 
         } catch (FileNotFoundException e) {

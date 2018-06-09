@@ -46,12 +46,12 @@ public class PopupActivity extends Activity {
                 if (state2 == false) {
 
                     // 사이렌 기능 삽입
-                    MediaPlayer mediaPlayer = MediaPlayer.create(PopupActivity.this, R.raw.siren);
-                    mediaPlayer.start();
+                   // MediaPlayer mediaPlayer = MediaPlayer.create(PopupActivity.this, R.raw.siren);
+                   // mediaPlayer.start();
 
                     //volume maximum
-                    AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                    am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, 1);
+                    //AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+                  //  am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, 1);
 
                     Intent msg = new Intent(getApplicationContext(), AutoSMS.class);
                     startActivity(msg);
