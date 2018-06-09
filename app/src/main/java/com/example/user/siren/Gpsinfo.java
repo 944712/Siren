@@ -1,4 +1,4 @@
-package com.example.user.siren.Location;
+package com.example.user.siren;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;

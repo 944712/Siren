@@ -14,8 +14,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.siren.Location.GpsActivity;
-import com.example.user.siren.Location.Gpsinfo;
+import com.example.user.siren.Gpsinfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
