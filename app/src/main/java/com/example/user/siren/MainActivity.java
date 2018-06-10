@@ -154,7 +154,10 @@ public class MainActivity extends AppCompatActivity {
         }
         contact.setText(buffer1.toString() + "\n");
 
-
+        //연락처 전달
+        Intent intentNum = new Intent(MainActivity.this,AutoSMS.class);
+        intentNum.putExtra("num",buffer1.toString());
+        startActivity(intentNum);
 
 
     }
