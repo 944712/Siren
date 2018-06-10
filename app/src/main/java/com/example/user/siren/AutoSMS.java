@@ -32,10 +32,8 @@ public class AutoSMS extends AppCompatActivity {
 
 
     //전화번호로 들어갈 값을 number로 선언하고 임의로 내번호를 넣음
-    Intent intent = getIntent();
-    public String number = intent.getStringExtra("number");
+    public String number="01072897211";
     public String msgText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
