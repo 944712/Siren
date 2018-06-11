@@ -80,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
                 boolean isEarphoneOn = (intent.getIntExtra("state", 0) > 0) ? true : false;
 
+
                 //이어폰이 무조건 연결되었다 해지된 상태여야 함
                 if (isEarphoneOn) {
+
                     //이어폰 연결되었을 때
                     Log.e("이어폰 log", "Earphone is plugged");
 
@@ -90,8 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     context.startActivity(popplugon);
 
                 }
-                //이어폰 연결되지 않을때
-                else {
+                else{
                     Log.e("이어폰 log", "Earphone is unPlugged");
 
                     //팝업창 띄우는 부분
@@ -101,13 +102,16 @@ public class MainActivity extends AppCompatActivity {
                     if (bScreenOn) {
 
                         Intent popon = new Intent(context, PopupOnActivity.class);
+                        popon.putExtra("num",buffer1.toString());
                         popon.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         context.startActivity(popon);
+
 
                     }
                     //스크린이 꺼져있을때
                     else {
                         Intent popup = new Intent(getApplicationContext(), PopupActivity.class);
+                        popup.putExtra("num",buffer1.toString());
                         popup.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(popup);
                     }
@@ -154,10 +158,9 @@ public class MainActivity extends AppCompatActivity {
         }
         contact.setText(buffer1.toString() + "\n");
 
-        //연락처 전달
-        Intent intentNum = new Intent(MainActivity.this,AutoSMS.class);
-        intentNum.putExtra("num",buffer1.toString());
-        startActivity(intentNum);
+//        Intent intentNum = new Intent(MainActivity.this,AutoSMS.class);
+//        intentNum.putExtra("num",buffer1.toString());
+//        startActivity(intentNum);
 
 
     }
@@ -247,5 +250,6 @@ public class MainActivity extends AppCompatActivity {
         }
         contact.setText(buffer1.toString() + "\n");
     }
+
 }
 

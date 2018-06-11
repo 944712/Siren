@@ -23,12 +23,19 @@ public class PopupOnActivity extends Activity{
     private Handler mHandler;
     private boolean state;
 
+    Intent intent;
+    public String number;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //타이틀바 없애기
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_popupon);
+
+        intent = getIntent(); //getIntent()로 받을준비
+        number = intent.getStringExtra("num");
+
 
         state = findViewById(R.id.button2).isSelected();
 
@@ -39,10 +46,7 @@ public class PopupOnActivity extends Activity{
                     finish();
 
 
-
                     if (state == false) {
-                        //이후 sms기능 삽입
-                        //
 
                         // 사이렌 기능 삽입
                         MediaPlayer mediaPlayer = MediaPlayer.create(PopupOnActivity.this, R.raw.siren);
@@ -54,6 +58,7 @@ public class PopupOnActivity extends Activity{
 
 
                         Intent msg = new Intent(getApplicationContext(), AutoSMS.class);
+                        msg.putExtra("num2",number);
                         startActivity(msg);
                     }
                 }

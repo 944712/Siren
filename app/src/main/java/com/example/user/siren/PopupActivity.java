@@ -23,12 +23,16 @@ public class PopupActivity extends Activity {
 
     private Handler mHandler;
     private boolean state2;
-
+    Intent intent;
+    public String number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
+
+        intent = getIntent(); //getIntent()로 받을준비
+        number = intent.getStringExtra("num");
 
         int flags = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON;
         getWindow().addFlags(flags);
@@ -42,9 +46,7 @@ public class PopupActivity extends Activity {
                 finish();
 
 
-
                 if (state2 == false) {
-
                     // 사이렌 기능 삽입
                     MediaPlayer mediaPlayer = MediaPlayer.create(PopupActivity.this, R.raw.siren);
                     mediaPlayer.start();
@@ -54,7 +56,10 @@ public class PopupActivity extends Activity {
                     am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, 1);
 
                     Intent msg = new Intent(getApplicationContext(), AutoSMS.class);
+                    msg.putExtra("num2",number);
                     startActivity(msg);
+
+
                 }
             }
         }, 5000);

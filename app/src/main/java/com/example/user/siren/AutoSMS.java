@@ -28,9 +28,10 @@ public class AutoSMS extends AppCompatActivity {
     private boolean isPermission = false;
 
     Intent intent;
-
     // GPSTracker class
     private Gpsinfo gps;
+
+//    public MainActivity phoneNum;
 
 
     //전화번호로 들어갈 값을 number로 선언하고 임의로 내번호를 넣음
@@ -41,16 +42,21 @@ public class AutoSMS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //연락처 전달받는 함수
-       intent = getIntent(); //getIntent()로 받을준비
-        number = intent.getStringExtra("num");
-        Log.v("AutoSMS","phone : " + number);
+        //연락처 전달받는 함
+        intent = getIntent(); //getIntent()로 받을준비
+        number = intent.getStringExtra("num2");
+//
+//        Log.v("AutoSMS","phone : " + number);
+
+
+
 
 
         final Geocoder geocoder = new Geocoder(this);
 
         // GPS 정보를 보여주기 위한 이벤트 클래스 등록
         gps = new Gpsinfo(AutoSMS.this);
+
 
 
         //위도, 경도 변환 후 주소값 보여주기
@@ -73,7 +79,6 @@ public class AutoSMS extends AppCompatActivity {
             } else {
                 //현재위치받아온것을 msgText에 저장함
                 msgText = list.get(0).toString();
-
             }
         }
 
