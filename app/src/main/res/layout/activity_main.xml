@@ -17,12 +17,14 @@
             android:layout_height="50dp"
             android:id="@+id/btn_add"
             android:text="add"
+            android:textSize="20dp"
             android:layout_gravity="bottom|end"
             android:layout_margin="10dp"
             />
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:textSize="20dp"
            android:id="@+id/contact"/>
 
     </LinearLayout>
