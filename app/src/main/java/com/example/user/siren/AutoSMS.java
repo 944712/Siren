@@ -27,18 +27,25 @@ public class AutoSMS extends AppCompatActivity {
     private boolean isAccessCoarseLocation = false;
     private boolean isPermission = false;
 
+    Intent intent;
+
     // GPSTracker class
     private Gpsinfo gps;
 
 
     //전화번호로 들어갈 값을 number로 선언하고 임의로 내번호를 넣음
-    public String number="01072897211";
+    public String number;
     public String msgText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sms);
+
+        //연락처 전달받는 함수
+       intent = getIntent(); //getIntent()로 받을준비
+        number = intent.getStringExtra("num");
+        Log.v("AutoSMS","phone : " + number);
+
 
         final Geocoder geocoder = new Geocoder(this);
 
