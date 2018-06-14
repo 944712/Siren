@@ -54,7 +54,7 @@ public class PopupOnActivity extends Activity{
 
                         //volume maximum
                         AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                        am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, 1);
+                        am.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 1);
 
 
                         Intent msg = new Intent(getApplicationContext(), AutoSMS.class);
